@@ -22,7 +22,7 @@ let ddmenu = d3.select("#selDataset");
 for (subjectID of subjectIDs) {
     ddmenu.append("option").text(subjectID).property("value", subjectID);
 };
-// function to change ID, then call chart and demographic table functions?
+// function to change ID .on("change", ID)?, then call chart and demographic table functions?
 
 // Create horizontal bar chart
 ID = "940";
