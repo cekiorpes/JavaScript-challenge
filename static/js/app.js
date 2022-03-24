@@ -11,7 +11,7 @@ console.log(demographic);
 let sample_data = Object.values(data.samples);
 console.log(sample_data);
 
-// Create horizontal bar chart
+// Create horizontal bar chart - not displaying bar chart, but data displays correctly in console
 ID = "940";
 let filteredSample = sample_data.filter(patient => patient.id === ID);
 console.log(filteredSample);
