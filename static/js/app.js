@@ -16,18 +16,16 @@ ID = "940";
 let filteredSample = sample_data.filter(patient => patient.id === ID);
 console.log(filteredSample);
 
-let patient_values = filteredSample.map(p => p.sample_values);
+let patient_values = filteredSample.map(p => p.sample_values.slice(0, 10));
 console.log(patient_values);
-// let slice_patient_values = patient_values.slice(0,10).reverse();
-// console.log(slice_patient_values);
-let patient_otu_ids = filteredSample.map(p => p.otu_ids);
+let patient_otu_ids = filteredSample.map(p => p.otu_ids.slice(0, 10));
 console.log(patient_otu_ids);
-let patient_labels = filteredSample.map(p => p.otu_labels);
+let patient_labels = filteredSample.map(p => p.otu_labels.slice(0, 10));
 console.log(patient_labels);
 
 let hbar = [{
     x: patient_values,
-    y: patient_otu_ids,
+    y: patient_otu_ids.map(otu => `OTU ${otu}`),
     text: patient_labels,
     type: "bar",
     orientation: "h",
