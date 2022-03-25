@@ -1,10 +1,13 @@
 // Read in data - due to browser issues, I converted the samples file to JavaScript
-// d3.json("samples.json").then(function(data) {
+// d3.json("/samples.json").then(function(data) {
 //     console.log(data);
+
 //     let subjectIDs = data.names;
 //     console.log(subjectIDs);
+
 //     let demographic = data.metadata;
 //     console.log(demographic);
+
 //     let sample_data = data.samples;
 //     console.log(sample_data);
 // });
