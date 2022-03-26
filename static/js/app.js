@@ -19,25 +19,22 @@ function init(){
         for (subjectID of subjectIDs) {
         ddmenu.append("option").text(subjectID).property("value", subjectID);
         };
-
-        let firstSample = subjectIDs[0];
-        optionChanged(firstSample);
-    });
-    
+        
+        //Set first/default ID
+        let firstID = subjectIDs[0];
+        optionChanged(firstID);
+    });   
 };
     
 
-
+// Create charts based on ID
 function charts(ID) {
-    // Create charts based on ID
     //Read in sample data
     d3.json("samples.json").then(function(data) {
         console.log(data);
 
         let sample_data = data.samples;
         console.log(sample_data);
-
-        // let ID = "940";
 
         //Filter data by ID number
         let filteredSample = sample_data.filter(patient => patient.id === ID)[0];
@@ -46,9 +43,11 @@ function charts(ID) {
         //Find sample_values for specific test subject
         let patient_values = filteredSample.sample_values;
         console.log(patient_values);
+
         //Find otu_ids for specific test subject
         let patient_otu_ids = filteredSample.otu_ids;
         console.log(patient_otu_ids);
+        
         //Find otu_labels for specific test subject
         let patient_labels = filteredSample.otu_labels;
         console.log(patient_labels);
@@ -103,7 +102,6 @@ function charts(ID) {
 function demographic(ID){
     //Put demographic information in chart
     let demo = d3.select("#sample-metadata");
-    // let ID = "940";
 
     //Read in demographic data
     d3.json("samples.json").then(function(data) {
@@ -113,7 +111,7 @@ function demographic(ID){
         console.log(demographic);
 
         //Filter demographic data by ID number
-        let filteredDemographic = demographic.filter(object => object.id === parseInt(ID))[0];
+        let filteredDemographic = demographic.filter(patient => patient.id ==ID)[0];
         console.log(filteredDemographic);
 
         //Read each key:value pair in filtered data as its own array
@@ -124,6 +122,11 @@ function demographic(ID){
         for (row of rows) {
             demo.append("p").text(`${row[0]}: ${row[1]}`)
         };
+
+        //Solution from class talking through 
+        //Object.entries(filteredDemographic).forEach(([key,value]) => {
+        //     demo.append("p").text(`${key}: ${value}`)
+        // });
     });
 };
 
@@ -131,6 +134,10 @@ function optionChanged(value) {
     console.log(value);
     let ID = value;
 
+    //Remove previous demographic data
+    d3.select("#sample-metadata").text("");
+
+    //Call chart and demographic functions with new ID
     charts(ID);
     demographic(ID);
 };
