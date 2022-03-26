@@ -1,4 +1,4 @@
-// Read in data
+// Read in test subject ID data
 d3.json("samples.json").then(function(data) {
     console.log(data);
 
@@ -32,6 +32,7 @@ d3.json("samples.json").then(function(data) {
     console.log(sample_data);
 
     let ID = "940";
+
     //Filter data by ID number
     let filteredSample = sample_data.filter(patient => patient.id === ID)[0];
     console.log(filteredSample);
