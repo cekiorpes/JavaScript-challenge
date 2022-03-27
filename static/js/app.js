@@ -123,14 +123,26 @@ function charts(ID) {
                     axis: { 
                         range: [0,8],
                         tickwidth: 1, 
-                        ticks: "inside",
+                        ticks: "",
                         tickmode: "array",
                         ticktext: ["0-1", "1-2", "2-3", "3-4", "4-5", "5-6", "6-7", "7-8", "8-9"],
                         tickvals: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
                     },
                     bar: {
-
-                    }
+                        color: "white",
+                        thickness: 0.1,
+                    },
+                    steps: [
+                        {range:[0, 1], color:"rgb(229, 238, 235)"},
+                        {range:[1, 2], color:"rgb(199, 231, 220)"},
+                        {range:[2, 3], color:"rgb(170, 216, 200)"},
+                        {range:[3, 4], color:"rgb(144, 201, 181)"},
+                        {range:[4, 5], color:"rgb(116, 180, 158)"},
+                        {range:[5, 6], color:"rgb(81, 170, 139)"},
+                        {range:[6, 7], color:"rgb(94, 201, 169)"},
+                        {range:[7, 8], color:"#227457"},
+                        {range:[8, 9], color:"rgb(10, 68, 48)"},
+                    ],
                 },
             }
         ];
