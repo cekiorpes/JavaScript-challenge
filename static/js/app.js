@@ -95,7 +95,52 @@ function charts(ID) {
         };
 
         //Render the chart to the bubble id tag
-        Plotly.newPlot("bubble", bubble, bubble_layout);
+        Plotly.newPlot("bubble", bubble, bubble_layout)
+    });
+
+    //Bonus
+    //Read in demographic data
+    d3.json("samples.json").then(function(data) {
+        console.log(data);
+
+        let demographic = data.metadata;
+        console.log(demographic);
+
+        //Filter demographic data by ID number
+        let filteredDemographic = demographic.filter(patient => patient.id ==ID)[0];
+        console.log(filteredDemographic);
+
+        let washFreq = filteredDemographic.wfreq;
+
+        let gaugeData = [
+            {
+                domain: {x: [0, 1], y: [0, 1]},
+                value: washFreq,
+                title: "Washes per Week",
+                type: "indicator",
+                mode: "gauge+number",
+                gauge: {
+                    axis: { 
+                        range: [0,8],
+                        tickwidth: 1, 
+                        ticks: "inside",
+                        tickmode: "array",
+                        ticktext: ["0-1", "1-2", "2-3", "3-4", "4-5", "5-6", "6-7", "7-8", "8-9"],
+                        tickvals: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+                    },
+                    bar: {
+
+                    }
+                },
+            }
+        ];
+
+        let gauge_layout = { 
+            title: "Belly Button Washing Frequency",
+            width: 600, height: 500,
+        };
+
+        Plotly.newPlot("gauge", gaugeData, gauge_layout);
     });
 };
 
