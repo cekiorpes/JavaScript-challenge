@@ -9,7 +9,7 @@ function init(){
         //Put test subject names in dropdown menu
         let ddmenu = d3.select("#selDataset");
         for (subjectID of subjectIDs) {
-        ddmenu.append("option").text(subjectID).property("value", subjectID);
+            ddmenu.append("option").text(subjectID).property("value", subjectID);
         };
         
         //Set first/default ID
