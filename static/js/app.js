@@ -1,11 +1,3 @@
-// Read in data from samples.js file
-// let subjectIDs = Object.values(data.names);
-// console.log(subjectIDs);
-// let demographic = Object.values(data.metadata);
-// console.log(demographic);
-// let sample_data = Object.values(data.samples);
-// console.log(sample_data);
-
 // Read in test subject ID data
 function init(){
     d3.json("samples.json").then(function(data) {
@@ -110,8 +102,10 @@ function charts(ID) {
         let filteredDemographic = demographic.filter(patient => patient.id ==ID)[0];
         console.log(filteredDemographic);
 
+        //Find washing frequency for specific test subject
         let washFreq = filteredDemographic.wfreq;
 
+        //Data for gauge chart
         let gaugeData = [
             {
                 domain: {x: [0, 1], y: [0, 1]},
@@ -147,11 +141,13 @@ function charts(ID) {
             }
         ];
 
+        //Layout for the gauge chart
         let gauge_layout = { 
             title: "Belly Button Washing Frequency",
             width: 600, height: 500,
         };
 
+        //Render the chart to the gauge id tag
         Plotly.newPlot("gauge", gaugeData, gauge_layout);
     });
 };
@@ -179,11 +175,6 @@ function demographic(ID){
         for (row of rows) {
             demo.append("p").text(`${row[0]}: ${row[1]}`)
         };
-
-        //Solution from class talking through 
-        //Object.entries(filteredDemographic).forEach(([key,value]) => {
-        //     demo.append("p").text(`${key}: ${value}`)
-        // });
     });
 };
 
