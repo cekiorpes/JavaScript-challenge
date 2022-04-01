@@ -1,4 +1,4 @@
-# belly-button-biodiversity-challenge
+# JavaScript-challenge
 
 Using JavaScript, D3, and Plotly to create an interactive dashboard using data from the Belly Button Biodiversity dataset
 
